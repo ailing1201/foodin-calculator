@@ -226,7 +226,7 @@ async function captureAndDownload() {
 // AI Integration (Gemini API)
 // ---------------------------------------------------------------------------
 async function callGemini(prompt) {
-  const apiKey = ""; // System provided - user should add their key
+  const apiKey = "AIzaSyBjZpwvIzpxdktfJ4vwZcDX-ikEXbWj0fk";
 
   if (!apiKey) {
     return "請設定 API Key 以啟用 AI 功能。您可以在 app.js 中設定 apiKey 變數。";
