@@ -171,19 +171,20 @@ h6 {
    ============================================ */
 .floating-quote-bubble {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
   z-index: 1000;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .floating-quote-bubble:hover {
-  transform: scale(1.1);
+  transform: translateY(-50%) scale(1.1);
 }
 
 .floating-quote-bubble:active {
-  transform: scale(0.95);
+  transform: translateY(-50%) scale(0.95);
 }
 
 .bubble-inner {
@@ -261,8 +262,9 @@ h6 {
 /* Mobile adjustments */
 @media (max-width: 640px) {
   .floating-quote-bubble {
-    bottom: 20px;
-    right: 20px;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
   }
 
   .bubble-inner {
