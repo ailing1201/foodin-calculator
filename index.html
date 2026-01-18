@@ -40,64 +40,56 @@
         </p>
       </header>
 
-      <div class="content-layout">
-        <!-- Main Content Area -->
-        <main class="main-content">
-          <!-- Navigation Tabs -->
-          <nav class="nav-tabs" id="navTabs">
-            <!-- Tabs will be rendered by JS -->
-          </nav>
-
-          <!-- Content Panel -->
-          <div class="content-panel" id="contentPanel">
-            <!-- Content will be rendered by JS -->
-          </div>
-
-          <!-- Contact Info -->
-          <div class="contact-section">
-            <div class="contact-card">
-              <div class="contact-info">
-                <div class="contact-icon">
-                  <span class="line-badge">LINE</span>
-                </div>
-                <div class="contact-text">
-                  <h4>下一步：聯繫客服確認</h4>
-                  <p class="contact-id">ID: <strong>@foodin</strong></p>
-                  <p class="contact-hint">
-                    請將右側（或下方）的「透明報價單」截圖，傳送給我們。<br>
-                    我們將盡快為您安排製作檔期！
-                  </p>
-                </div>
-              </div>
-              <a href="https://line.me/ti/p/@foodin" target="_blank" class="btn-line">
-                加入 LINE 好友
-              </a>
-            </div>
-          </div>
-        </main>
-
-        <!-- Sidebar / Summary -->
-        <aside class="sidebar">
-          <div class="summary-panel" id="summaryPanel">
-            <!-- Summary will be rendered by JS -->
-          </div>
-        </aside>
+      <!-- Sticky Quote Summary (Always Visible at Top) -->
+      <div class="sticky-quote-summary" id="stickyQuoteSummary">
+        <div class="sticky-quote-left">
+          <span class="sticky-quote-label">目前報價</span>
+          <span class="sticky-quote-count" id="stickyQuoteCount">0 項</span>
+        </div>
+        <div class="sticky-quote-total" id="stickyQuoteTotal">$0</div>
+        <button class="sticky-quote-btn" onclick="openQuoteModal()">
+          <i data-lucide="file-text"></i>
+          查看報價單
+        </button>
       </div>
+
+      <!-- Main Content Area (Single Column) -->
+      <main class="main-content-full">
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs" id="navTabs">
+          <!-- Tabs will be rendered by JS -->
+        </nav>
+
+        <!-- Content Panel -->
+        <div class="content-panel" id="contentPanel">
+          <!-- Content will be rendered by JS -->
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-section">
+          <div class="contact-card">
+            <div class="contact-info">
+              <div class="contact-icon">
+                <span class="line-badge">LINE</span>
+              </div>
+              <div class="contact-text">
+                <h4>下一步：聯繫客服確認</h4>
+                <p class="contact-id">ID: <strong>@foodin</strong></p>
+                <p class="contact-hint">
+                  點擊上方「查看報價單」按鈕，即可截圖報價單傳送給我們！
+                </p>
+              </div>
+            </div>
+            <a href="https://line.me/ti/p/@foodin" target="_blank" class="btn-line">
+              加入 LINE 好友
+            </a>
+          </div>
+        </div>
+      </main>
     </div>
   </div>
 
-  <!-- Floating Quote Bar (Always Visible) -->
-  <div class="floating-quote-bar" id="floatingQuoteBar">
-    <div class="quote-bar-info">
-      <span class="quote-bar-count" id="quoteBarCount">已選 0 項</span>
-      <span class="quote-bar-divider">|</span>
-      <span class="quote-bar-total" id="quoteBarTotal">$0</span>
-    </div>
-    <button class="quote-bar-btn" onclick="openQuoteModal()">
-      <i data-lucide="file-text"></i>
-      查看報價單
-    </button>
-  </div>
+
 
   <!-- Quote Modal -->
   <div class="quote-modal-overlay hidden" id="quoteModalOverlay" onclick="closeQuoteModal()">

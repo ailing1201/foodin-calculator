@@ -510,93 +510,19 @@ function calculateCart() {
 }
 
 function renderSummary() {
-  const { cartItems, subtotal, rushFee, total } = calculateCart();
-
-  let cartHtml = '';
-  if (cartItems.length === 0) {
-    cartHtml = `
-      <div class="cart-empty">
-        <p>尚未選擇項目</p>
-        <p>請從左側選單點選服務項目</p>
-      </div>
-    `;
-  } else {
-    cartHtml = cartItems.map(item => `
-      <div class="cart-item">
-        <div class="cart-item-info">
-          <div class="cart-item-name">${item.category} - ${item.name.split('｜')[0]}</div>
-          <div class="cart-item-detail">$${formatNumber(item.price)} x ${item.qty}</div>
-        </div>
-        <div class="cart-item-right">
-          <div class="cart-item-total">$${formatNumber(item.itemTotal)}</div>
-          <button class="cart-item-remove" onclick="removeItem('${item.id}')" title="移除此項目">
-            ${createIcon('x', 14)}
-          </button>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  const summaryPanel = document.getElementById('summaryPanel');
-  summaryPanel.innerHTML = `
-    <div class="summary-header">
-      <div class="summary-title">
-        ${createIcon('file-text', 20)}
-        預估報價單
-      </div>
-      ${cartItems.length > 0 ? `
-        <button class="clear-btn" onclick="resetCart()">
-          ${createIcon('trash-2', 14)} 清空
-        </button>
-      ` : ''}
-    </div>
-
-    <div class="cart-items">
-      ${cartHtml}
-    </div>
-
-    <div class="summary-footer">
-      <div class="rush-row">
-        <label class="rush-label">
-          <input type="checkbox" class="rush-checkbox" onchange="toggleRush(this.checked)" ${isRush ? 'checked' : ''}>
-          <div class="rush-text">
-            ${createIcon('zap', 16, isRush ? 'active' : '')}
-            <span>急件處理 (24h)</span>
-          </div>
-        </label>
-        ${isRush ? `<span class="rush-fee">+$${formatNumber(rushFee)}</span>` : ''}
-      </div>
-
-      <div class="total-row">
-        <span class="total-label">預估總計</span>
-        <span class="total-value">$${formatNumber(total)}</span>
-      </div>
-
-      <button 
-        class="submit-btn"
-        onclick="captureAndDownload()"
-      >
-        ${createIcon('camera', 18)}
-        一鍵截圖報價單
-      </button>
-      <p class="submit-note">點擊後自動下載報價單圖片</p>
-    </div>
-  `;
-
-  refreshIcons();
-
-  // Update Floating Quote Bar
-  updateFloatingQuoteBar();
+  // Just update the sticky quote summary
+  updateStickyQuoteSummary();
 }
 
-function updateFloatingQuoteBar() {
+function updateStickyQuoteSummary() {
   const { cartItems, total } = calculateCart();
   const itemCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
 
-  const countEl = document.getElementById('quoteBarCount');
-  const totalEl = document.getElementById('quoteBarTotal');
+  // Update sticky summary at top
+  const countEl = document.getElementById('stickyQuoteCount');
+  const totalEl = document.getElementById('stickyQuoteTotal');
 
-  if (countEl) countEl.textContent = `已選 ${itemCount} 項`;
+  if (countEl) countEl.textContent = `${itemCount} 項`;
   if (totalEl) totalEl.textContent = `$${formatNumber(total)}`;
 
   refreshIcons();
