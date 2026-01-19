@@ -1257,10 +1257,40 @@ h6 {
   font-size: 0.8rem;
 }
 
+.modal-item-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .modal-item-price {
   color: var(--gold-300);
   font-family: 'Noto Serif TC', serif;
   font-weight: 600;
+}
+
+.modal-item-delete {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: rgba(248, 113, 113, 0.1);
+  color: #f87171;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.modal-item-delete:hover {
+  background: rgba(248, 113, 113, 0.25);
+  transform: scale(1.1);
+}
+
+.modal-item-delete i {
+  width: 14px;
+  height: 14px;
 }
 
 .modal-cart-empty {

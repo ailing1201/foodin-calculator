@@ -51,6 +51,7 @@ const categories = [
       { id: 'cb1', name: '圖文體驗組', price: 600, originalPrice: 750, desc: '1張設計圖 + 1則文案 (原價 $750，現省 $150)' },
       { id: 'cb3', name: '招牌圖文組', price: 1650, desc: '3張設計圖 + 3則文案' },
       { id: 'cb5', name: '人氣圖文組', price: 2600, desc: '5張設計圖 + 5則文案' },
+      { id: 'cb10', name: '完整圖文組', price: 5100, desc: '10張設計圖 + 10則文案 ⭐ 最超值' },
     ]
   },
   {
@@ -569,11 +570,16 @@ function renderQuoteModalContent() {
 
   let itemsHtml = cartItems.map(item => `
     <div class="modal-cart-item">
-      <div>
+      <div class="modal-item-info">
         <div class="modal-item-name">${item.name.split('｜')[0]}</div>
         <div class="modal-item-detail">$${formatNumber(item.price)} × ${item.qty}</div>
       </div>
-      <div class="modal-item-price">$${formatNumber(item.itemTotal)}</div>
+      <div class="modal-item-right">
+        <span class="modal-item-price">$${formatNumber(item.itemTotal)}</span>
+        <button class="modal-item-delete" onclick="removeItemFromModal('${item.id}')" title="刪除">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
     </div>
   `).join('');
 
@@ -592,6 +598,14 @@ function renderQuoteModalContent() {
       <span class="modal-total-value">$${formatNumber(total)}</span>
     </div>
   `;
+
+  refreshIcons();
+}
+
+function removeItemFromModal(itemId) {
+  removeItem(itemId);
+  renderQuoteModalContent();
+  updateFloatingBubble();
 }
 
 async function captureModalQuote() {
